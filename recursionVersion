@@ -1,0 +1,56 @@
+//********************************************************************
+//  PalindromeTester.java       Author: Paxton Kammermeier
+//
+//  Revised version of the Palindrome Tester that uses a recursion
+//  method to continue using the scanner to test palindromes. 
+//********************************************************************
+
+import java.util.Scanner;
+
+public class PalindromeTester
+{
+    /* 
+     * This is the recursion method. The method will keep recurring as long as the string is 
+     * a Y (ignoring the case). 
+     */
+    public static void isAYes (String another)
+    {
+        String str; //another = "y";
+        int left, right;
+        Scanner scan = new Scanner(System.in);
+        while (another.equalsIgnoreCase("y")) // allows y or Y
+        {
+            System.out.println("Enter a potential palindrome:");
+            str = scan.nextLine();
+
+            left = 0;
+            right = str.length() - 1;
+
+            while (str.charAt(left) == str.charAt(right) && left < right) {
+                left++;
+                right--;
+            }
+
+            System.out.println();
+
+            if (left < right)
+                System.out.println("That string is NOT a palindrome.");
+            else
+                System.out.println("That string IS a palindrome.");
+
+            System.out.println();
+            System.out.print("Test another palindrome (y/n)? ");
+            another = scan.nextLine();
+            //The method will call itself again depending on what the 
+            // user puts in the next line.
+            isAYes(another);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        isAYes("y");
+
+    }
+
+}
